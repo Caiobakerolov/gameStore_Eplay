@@ -7,9 +7,14 @@ const Header = () => (
   <>
     <HeaderBar>
       <div>
-        <img src={logo} alt="Eplay" />
+        <Link to="/">
+          <img src={logo} alt="Eplay" />
+        </Link>
         <nav>
           <Links>
+            <LinkItem>
+              <Link to="/">Home</Link>
+            </LinkItem>
             <LinkItem>
               <Link to="/categories">Categories</Link>
             </LinkItem>

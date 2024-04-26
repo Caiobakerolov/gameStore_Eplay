@@ -8,6 +8,7 @@ export const Image = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   font-weight: bold;
+  margin-top: 80px;
 
   .container {
     position: relative;

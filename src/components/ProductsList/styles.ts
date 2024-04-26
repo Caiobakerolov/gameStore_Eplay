@@ -5,6 +5,7 @@ import { Card } from '../Product/styles'
 
 export const Container = styled.section<Omit<Props, 'title' | 'games'>>`
   padding: 32px 0;
+  margin-top: 80px;
   background-color: ${(props) =>
     props.background === 'black' ? colors.black : colors.gray};
 
