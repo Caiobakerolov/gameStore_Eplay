@@ -9,7 +9,9 @@ const Banner = () => (
       <div className="container">
         <Tag size="big">Highlight of the Day</Tag>
         <div>
-          <Title>Marvel&apos;s Spider-Man: Miles Morales PS4 & PS5</Title>
+          <Title>
+            Marvel&apos;s Spider-Man: Miles <br /> Morales PS4 & PS5
+          </Title>
           <Price>
             From <span>U$$99.00</span> <br />
             to only U$$49.99

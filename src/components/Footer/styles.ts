@@ -22,8 +22,9 @@ export const Link = styled.a`
   color: ${colors.lightGray};
   text-decoration: none;
   margin-right: 8px;
+  cursor: pointer;
 `
 
 export const FooterSection = styled.div`
-  margin-bottom: 64px;
+  margin-bottom: 34px;
 `
