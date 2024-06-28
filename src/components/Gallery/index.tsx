@@ -1,23 +1,25 @@
 import Section from '../Section'
+import { Item, Items } from './styles'
+
 import zelda from '../../assets/images/zelda.png'
 
 const Gallery = () => (
   <>
     <Section title="Gallery" background="black">
-      <ul>
-        <li>
-          <img src={zelda} alt="image link" />
-        </li>
-        <li>
-          <img src={zelda} alt="image link" />
-        </li>
-        <li>
-          <img src={zelda} alt="image link" />
-        </li>
-        <li>
-          <img src={zelda} alt="image link" />
-        </li>
-      </ul>
+      <Items>
+        <Item>
+          <img src={zelda} alt="image Link" />
+        </Item>
+        <Item>
+          <img src={zelda} alt="image Link" />
+        </Item>
+        <Item>
+          <img src={zelda} alt="image Link" />
+        </Item>
+        <Item>
+          <img src={zelda} alt="image Link" />
+        </Item>
+      </Items>
     </Section>
   </>
 )
