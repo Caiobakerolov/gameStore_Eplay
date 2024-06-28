@@ -13,9 +13,11 @@ export const ButtonContainer = styled.button<Props>`
   font-weight: bold;
   padding: 8px 16px;
   border-radius: 8px;
+  text-decoration: none;
 `
 
 export const ButtonLink = styled(Link)`
+  color: ${colors.white};
   border: 2px solid ${colors.white};
   background-color: transparent;
   font-size: 16px;
