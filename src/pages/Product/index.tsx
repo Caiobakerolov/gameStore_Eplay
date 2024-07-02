@@ -3,6 +3,8 @@ import Hero from '../../components/Hero'
 import Section from '../../components/Section'
 import Gallery from '../../components/Gallery'
 
+import residentEvil from '../../assets/images/resident.png'
+
 const Product = () => {
   const { id } = useParams()
 
@@ -34,7 +36,7 @@ const Product = () => {
           Audio and subtitle options can be adjusted in the game settings.
         </p>
       </Section>
-      <Gallery />
+      <Gallery name="test game" defaultCover={residentEvil} />
     </>
   )
 }
