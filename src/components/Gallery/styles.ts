@@ -19,7 +19,7 @@ export const Action = styled.div`
   transition: opacity 0.5s ease;
 `
 
-export const Item = styled.ul`
+export const Item = styled.li`
   margin-right: 16px;
   position: relative;
 
@@ -77,6 +77,6 @@ export const ModalContent = styled.div`
 
   img {
     display: block;
-    width: 100%;
+    max-width: 100%;
   }
 `
