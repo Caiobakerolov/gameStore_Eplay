@@ -10,6 +10,10 @@ export const Card = styled.div`
 
   img {
     border-radius: 8px;
+    display: block;
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
   }
 
   ${TagContainer} {

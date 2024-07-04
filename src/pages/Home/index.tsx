@@ -1,97 +1,58 @@
+import { useEffect, useState } from 'react'
+
 import Banner from '../../components/Banner'
 import ProductList from '../../components/ProductsList'
-import Game from '../../models/Game'
-import resident from '../../assets/images/resident.png'
-import diablo from '../../assets/images/diablo.png'
-import zelda from '../../assets/images/zelda.png'
-import starWars from '../../assets/images/star_wars.png'
 
-const promotion: Game[] = [
-  {
-    id: 1,
-    category: 'action',
-    description: 'Resident Evil 4',
-    title: 'Resident Evil 4',
-    system: 'Windows',
-    infos: ['10%', 'U$$150'],
-    image: resident
-  },
-  {
-    id: 2,
-    category: 'action',
-    description:
-      'Diablo IV is an action RPG in development by Blizzard Entertainment.',
-    title: 'Diablo 4',
-    system: 'Nintendo Switch',
-    infos: ['5%', 'U$$120'],
-    image: diablo
-  },
-  {
-    id: 3,
-    category: 'action',
-    description: 'Zelda',
-    title: 'Zelda',
-    system: 'Windows',
-    infos: ['10%', 'U$$150'],
-    image: zelda
-  },
-  {
-    id: 4,
-    category: 'action',
-    description: 'Star Wars',
-    title: 'Star Wars',
-    system: 'Windows',
-    infos: ['10%', 'U$$150'],
-    image: starWars
+export interface GalleryItem {
+  type: 'image' | 'video'
+  url: string
+}
+
+export type Game = {
+  id: number
+  name: string
+  description: string
+  release_date?: string
+  prices: {
+    discount?: number
+    old?: number
+    current?: number
   }
-]
-
-const shortly: Game[] = [
-  {
-    id: 5,
-    category: 'action',
-    description: 'Star Wars',
-    title: 'Star Wars',
-    system: 'Windows',
-    infos: ['17/05'],
-    image: starWars
-  },
-  {
-    id: 6,
-    category: 'action',
-    description: 'Zelda',
-    title: 'Zelda',
-    system: 'Windows',
-    infos: ['17/05'],
-    image: zelda
-  },
-  {
-    id: 7,
-    category: 'action',
-    description:
-      'Diablo IV is an action RPG in development by Blizzard Entertainment.',
-    title: 'Diablo 4',
-    system: 'Nintendo Switch',
-    infos: ['5%', 'U$$120'],
-    image: diablo
-  },
-  {
-    id: 8,
-    category: 'action',
-    description: 'Resident Evil 4',
-    title: 'Resident Evil 4',
-    system: 'Windows',
-    infos: ['10%', 'U$$150'],
-    image: resident
+  details: {
+    category: string
+    system: string
+    developer: string
+    publisher: string
+    languages: string[]
   }
-]
+  media: {
+    thumbnail: string
+    cover: string
+    gallery: GalleryItem[]
+  }
+}
 
-const Home = () => (
-  <>
-    <Banner />
-    <ProductList games={promotion} title="Promotion" background="gray" />
-    <ProductList games={shortly} title="shortly " background="black" />
-  </>
-)
+const Home = () => {
+  const [promotions, setPromotions] = useState<Game[]>([])
+  const [soon, setSoon] = useState<Game[]>([])
+
+  useEffect(() => {
+    fetch('https://fake-api-tau.vercel.app/api/eplay/promocoes')
+      .then((res) => res.json())
+      .then((res) => setPromotions(res))
+
+    fetch('https://fake-api-tau.vercel.app/api/eplay/em-breve')
+      .then((res) => res.json())
+      .then((res) => setSoon(res))
+  }, [])
+
+  return (
+    <>
+      <Banner />
+      <ProductList games={promotions} title="Promotions" background="gray" />
+      <ProductList games={soon} title="Soon " background="black" />
+    </>
+  )
+}
 
 export default Home

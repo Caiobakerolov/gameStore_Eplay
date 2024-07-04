@@ -1,5 +1,5 @@
-import styled from 'styled-components'
 import { Props } from '.'
+import styled from 'styled-components'
 import { colors } from '../../styles'
 import { Card } from '../Product/styles'
 
