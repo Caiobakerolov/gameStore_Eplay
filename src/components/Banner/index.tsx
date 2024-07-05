@@ -34,7 +34,7 @@ const Banner = () => {
           </div>
           <Button
             type="link"
-            to="/product"
+            to={`/product/${game.id}`}
             title="click here to take advantage of this offer"
           >
             Enjoy

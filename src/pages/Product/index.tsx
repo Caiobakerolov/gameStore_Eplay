@@ -1,42 +1,46 @@
-// import { useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+
+import { Game } from '../Home'
 import Hero from '../../components/Hero'
 import Section from '../../components/Section'
 import Gallery from '../../components/Gallery'
 
-import residentEvil from '../../assets/images/resident.png'
-
 const Product = () => {
-  // const { id } = useParams()
+  const { id } = useParams()
+
+  const [game, setGame] = useState<Game>()
+
+  useEffect(() => {
+    fetch(`https://fake-api-tau.vercel.app/api/eplay/jogos/${id}`)
+      .then((res) => res.json())
+      .then((res) => setGame(res))
+  }, [id])
+
+  if (!game) {
+    return <h3>Loading...</h3>
+  }
 
   return (
     <>
-      <Hero />
+      <Hero game={game} />
       <Section title="About the game" background="black">
-        <p>
-          Hogwarts Legacy is an immersive, open-world action RPG set in the
-          world first introduced in the Harry Potter books. Embark on a journey
-          through new and familiar locations as you explore and discover
-          fantastic beasts, customise your character, brew potions, master spell
-          casting, enhance talents, and become the wizard you want to be.
-          Experience Hogwarts in the 1800s. Your character is a student holding
-          the key to an ancient secret that threatens to destroy the wizarding
-          world. Make allies, battle dark wizards, and determine the fate of the
-          wizarding world. Your legacy is what you make of it. Live the
-          Unforeseen.
-        </p>
+        <p>{game.description}</p>
       </Section>
       <Section title="More details" background="gray">
         <p>
-          <b>Platform</b>: PlayStation 5 <br />
-          <b>Developer</b>: Avalanche Software <br />
-          <b>Publisher</b>: Portkey Games, a subsidiary of Warner Bros.
-          Interactive Entertainment <br />
-          <b>Languages</b>: The game supports multiple languages, including
-          English, Spanish, French, German, Italian, Portuguese, among others.
-          Audio and subtitle options can be adjusted in the game settings.
+          <b>Platform:</b> {game.details.system} <br />
+          <b>Developer:</b> {game.details.developer} <br />
+          <b>Publisher:</b>: {game.details.publisher} <br />
+          <b>Languages: </b> The game supports multiple languages, including:{' '}
+          {game.details.languages.join(' , ')}
         </p>
       </Section>
-      <Gallery name="test game" defaultCover={residentEvil} />
+      <Gallery
+        name={game.name}
+        defaultCover={game.media.cover}
+        items={game.media.gallery}
+      />
     </>
   )
 }
