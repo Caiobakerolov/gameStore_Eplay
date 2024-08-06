@@ -2,8 +2,10 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import Button from '../Button'
 import Tag from '../Tag'
+import { formatPrice } from '../ProductsList'
+
 import { RootReducer } from '../../store'
-import { close } from '../../store/reducers/cart'
+import { close, remove } from '../../store/reducers/cart'
 
 import {
   Overlay,
@@ -25,6 +27,16 @@ const Cart = () => {
     dispatch(close())
   }
 
+  const getTotalPrice = () => {
+    return items.reduce((accumulator, valueCurrent) => {
+      return (accumulator += valueCurrent.prices.current!)
+    }, 0)
+  }
+
+  const removeItem = (id: number) => {
+    dispatch(remove(id))
+  }
+
   return (
     <CartContainer className={isOpen ? 'is-open' : ''}>
       <Overlay onClick={closeCart} />
@@ -37,15 +49,16 @@ const Cart = () => {
                 <h3>{item.name}</h3>
                 <Tag>{item.details.category}</Tag>
                 <Tag>{item.details.system}</Tag>
-                <span> {item.prices.current} </span>
+                <span> {formatPrice(item.prices.current)} </span>
               </div>
-              <button type="button" />
+              <button onClick={() => removeItem(item.id)} type="button" />
             </CartItem>
           ))}
         </ul>
-        <Quantity>2 jogos(s) no carrinho</Quantity>
+        <Quantity>{items.length} jogos(s) no carrinho</Quantity>
         <Prices>
-          Total de $250,00 <span>Em ate 6x sem juros</span>
+          Total de {formatPrice(getTotalPrice())}
+          {''} <span>Em ate 6x sem juros</span>
         </Prices>
         <Button title="click for continue with the purchase" type="button">
           Continue com a compra
