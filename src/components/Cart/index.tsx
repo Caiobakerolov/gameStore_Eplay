@@ -16,8 +16,6 @@ import {
   CartItem
 } from './styles'
 
-import starWars from '../../assets/images/star_wars.png'
-
 const Cart = () => {
   const { isOpen, items } = useSelector((state: RootReducer) => state.cart)
 
@@ -29,6 +27,7 @@ const Cart = () => {
 
   const getTotalPrice = () => {
     return items.reduce((accumulator, valueCurrent) => {
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       return (accumulator += valueCurrent.prices.current!)
     }, 0)
   }
