@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { TagContainer } from '../Tag/styles'
+import { breakPoints } from '../../styles'
 
 export const Image = styled.div`
   width: 100%;
@@ -10,6 +11,11 @@ export const Image = styled.div`
   font-weight: bold;
   margin-top: 28px;
   position: relative;
+
+  @media (max-width: ${breakPoints.tablet}) {
+    background-size: cover;
+    height: 400px;
+  }
 
   .container {
     position: relative;
