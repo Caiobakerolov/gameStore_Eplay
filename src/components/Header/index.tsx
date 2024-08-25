@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { open } from '../../store/reducers/cart'
 
-import { HeaderBar, Links, LinkItem, CartButton } from './styles'
+import { HeaderBar, Links, LinkItem, CartButton, Burgers } from './styles'
 
 import logo from '../../assets/images/logo.svg'
 import cart from '../../assets/images/carrinho.svg'
@@ -21,27 +21,34 @@ const Header = () => {
     <>
       <HeaderBar>
         <div>
-          <Link to="/">
-            <img src={logo} alt="Eplay" />
-          </Link>
-          <nav>
-            <Links>
-              <LinkItem>
-                <Link to="/categories">Categories</Link>
-              </LinkItem>
-              <LinkItem>
-                <a href="#">News</a>
-              </LinkItem>
-              <LinkItem>
-                <a href="#">Promotions</a>
-              </LinkItem>
-            </Links>
-          </nav>
+          <div>
+            <Burgers>
+              <span />
+              <span />
+              <span />
+            </Burgers>
+            <Link to="/">
+              <img src={logo} alt="Eplay" />
+            </Link>
+            <nav>
+              <Links>
+                <LinkItem>
+                  <Link to="/categories">Categories</Link>
+                </LinkItem>
+                <LinkItem>
+                  <a href="#">News</a>
+                </LinkItem>
+                <LinkItem>
+                  <a href="#">Promotions</a>
+                </LinkItem>
+              </Links>
+            </nav>
+          </div>
+          <CartButton onClick={openCart}>
+            {items.length} <span>- products</span>
+            <img src={cart} alt="Cart" />
+          </CartButton>
         </div>
-        <CartButton onClick={openCart}>
-          {items.length} - products
-          <img src={cart} alt="Cart" />
-        </CartButton>
       </HeaderBar>
     </>
   )
