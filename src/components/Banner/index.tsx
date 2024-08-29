@@ -7,7 +7,7 @@ import { Image, Title, Price } from './styles'
 import { useGetFeaturedGameQuery } from '../../services/api'
 
 const Banner = () => {
-  const { data: game } = useGetFeaturedGameQuery()
+  const { data: game, isLoading } = useGetFeaturedGameQuery()
 
   if (game) {
     return (

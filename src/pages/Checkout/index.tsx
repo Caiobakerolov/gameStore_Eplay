@@ -9,9 +9,12 @@ import { InputGroup, Row, TabButton } from './styles'
 
 import creditCard from '../../assets/images/credit-card.png'
 import bankSlip from '../../assets/images/barcode.png'
+import { usePurchaseMutation } from '../../services/api'
 
 const Checkout = () => {
   const [payWithCard, setPayWithCard] = useState(false)
+
+  const [purchase, { isLoading, isError, data }] = usePurchaseMutation()
 
   const form = useFormik({
     initialValues: {
@@ -21,7 +24,7 @@ const Checkout = () => {
       deliveryEmail: '',
       confirmDeliveryEmail: '',
       cardOwner: '',
-      cpfOwner: '',
+      cpfCardOwner: '',
       cardDisplayName: '',
       cardNumber: '',
       expiresMonth: '',
@@ -50,7 +53,7 @@ const Checkout = () => {
           payWithCard ? schema.required('Field is mandatory') : schema
         )
         .min(5, 'The name must be at least 5 characters long'),
-      cpfOwner: Yup.string()
+      cpfCardOwner: Yup.string()
         .when((values, schema) =>
           payWithCard ? schema.required('Field is mandatory') : schema
         )
@@ -93,7 +96,39 @@ const Checkout = () => {
         .max(19, 'The CPF must have a maximum of 14 characters')
     }),
     onSubmit: (values) => {
-      console.log(values)
+      purchase({
+        billing: {
+          document: values.cpf,
+          email: values.email,
+          name: values.fullName
+        },
+        delivery: {
+          email: values.deliveryEmail
+        },
+        payment: {
+          installments: 1,
+          card: {
+            active: payWithCard,
+            code: Number(values.cardCode),
+            name: values.cardDisplayName,
+            number: values.cardNumber,
+            owner: {
+              document: values.cpfCardOwner,
+              name: values.cardOwner
+            },
+            expires: {
+              month: 1,
+              year: 2024
+            }
+          }
+        },
+        products: [
+          {
+            id: 1,
+            price: 10
+          }
+        ]
+      })
     }
   })
 
@@ -226,12 +261,12 @@ const Checkout = () => {
                         type="text"
                         id="cpfOwner"
                         name="cpfOwner"
-                        value={form.values.cpfOwner}
+                        value={form.values.cpfCardOwner}
                         onChange={form.handleChange}
                         onBlur={form.handleBlur}
                       />
                       <small>
-                        {getErrorMessage('cpfOwner', form.errors.cpfOwner)}
+                        {getErrorMessage('cpfOwner', form.errors.cpfCardOwner)}
                       </small>
                     </InputGroup>
                   </Row>
