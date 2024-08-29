@@ -2,12 +2,12 @@ import { formatPrice } from '../ProductsList'
 import Tag from '../Tag'
 import Button from '../Button'
 
-import { Image, Title, Price } from './styles'
-
 import { useGetFeaturedGameQuery } from '../../services/api'
 
+import { Image, Title, Price } from './styles'
+
 const Banner = () => {
-  const { data: game, isLoading } = useGetFeaturedGameQuery()
+  const { data: game } = useGetFeaturedGameQuery()
 
   if (game) {
     return (

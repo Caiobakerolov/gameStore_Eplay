@@ -11,7 +11,7 @@ type Props = {
   id: number
 }
 
-const Product = ({
+function Product({
   title,
   category,
   system,
@@ -19,7 +19,7 @@ const Product = ({
   infos,
   image,
   id
-}: Props) => {
+}: Props) {
   const getDescription = (description: string) => {
     if (description.length > 95) {
       return description.slice(0, 92) + '...'
@@ -29,7 +29,10 @@ const Product = ({
 
   return (
     <>
-      <Card to={`/product/${id}`}>
+      <Card
+        title={`Click here to see more details about o game: ${title}`}
+        to={`/product/${id}`}
+      >
         <img src={image} alt={title} />
         <Infos>
           {infos.map((info) => (

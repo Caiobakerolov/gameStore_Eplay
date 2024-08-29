@@ -9,19 +9,44 @@ const Footer = () => (
         <SectionTitle>Categories</SectionTitle>
         <Links>
           <li>
-            <Link to="/categories#rpg">RPG</Link>
+            <Link
+              title="Click here to access games about RPG"
+              to="/categories#rpg"
+            >
+              RPG
+            </Link>
           </li>
           <li>
-            <Link to="/categories#action">Action</Link>
+            <Link
+              title="Click here to access games about Action"
+              to="/categories#action"
+            >
+              Action
+            </Link>
           </li>
           <li>
-            <Link to="/categories#sport">Sports</Link>
+            <Link
+              title="Click here to access games about Sports"
+              to="/categories#sport"
+            >
+              Sports
+            </Link>
           </li>
           <li>
-            <Link to="/categories#simulation">Simulation</Link>
+            <Link
+              title="Click here to access games about Simulation"
+              to="/categories#simulation"
+            >
+              Simulation
+            </Link>
           </li>
           <li>
-            <Link to="/categories#fight">Fight</Link>
+            <Link
+              title="Click here to access games about Fight"
+              to="/categories#fight"
+            >
+              Fight
+            </Link>
           </li>
         </Links>
       </FooterSection>
@@ -29,10 +54,20 @@ const Footer = () => (
         <SectionTitle>Quick access</SectionTitle>
         <Links>
           <li>
-            <Link to="/#on-sale">Promotion</Link>
+            <Link
+              title="Click here to access games about Promotion"
+              to="/#on-sale"
+            >
+              Promotion
+            </Link>
           </li>
           <li>
-            <Link to="/#coming-soon">Soon</Link>
+            <Link
+              title="Click here to access games about Soon"
+              to="/#coming-soon"
+            >
+              Soon
+            </Link>
           </li>
         </Links>
       </FooterSection>
