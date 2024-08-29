@@ -4,7 +4,7 @@ import { colors } from '../../styles'
 export const Container = styled.div`
   background-color: ${colors.gray};
   padding: 24px;
-  margin-top: 64px;
+  margin-top: 96px;
   margin-bottom: 40px;
   border-radius: 8px;
 
