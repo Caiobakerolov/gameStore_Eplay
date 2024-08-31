@@ -1,4 +1,3 @@
-import { Game } from '../../pages/Home'
 import Product from '../Product'
 import Loader from '../Loader'
 

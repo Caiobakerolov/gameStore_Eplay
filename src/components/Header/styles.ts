@@ -13,6 +13,8 @@ export const Links = styled.ul`
 
 export const HeaderBar = styled.header`
   background-color: ${colors.gray};
+  display: flex;
+  align-items: center;
   padding: 16px;
   margin-bottom: 80px;
   position: fixed;
@@ -29,21 +31,18 @@ export const HeaderBar = styled.header`
 `
 
 export const HeaderRow = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
   > div {
-    display: flex;
-    align-items: center;
-
     @media (max-width: ${breakPoints.tablet}) {
-      flex: 1;
-      justify-content: space-between;
+      display: flex;
+      align-items: center;
 
       ${Links} {
         display: none;
       }
+    }
+
+    @media (max-width: ${breakPoints.mobile}) {
+      display: flex;
     }
   }
 `
@@ -77,6 +76,18 @@ export const LogoWrapper = styled.div`
   display: flex;
   justify-content: center;
   margin-right: auto;
+
+  @media (max-width: ${breakPoints.mobile}) {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  @media (min-width: 481px) and (max-width: ${breakPoints.tablet}) {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 `
 
 export const CartButton = styled.a`

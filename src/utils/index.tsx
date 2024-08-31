@@ -1,5 +1,3 @@
-import { Game } from '../pages/Home'
-
 export const parseToAus = (amount = 0) => {
   return new Intl.NumberFormat('en', {
     style: 'currency',

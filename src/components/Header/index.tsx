@@ -45,10 +45,6 @@ const Header = () => {
               </Link>
             </LogoWrapper>
           </div>
-          <CartButton onClick={openCart}>
-            {items.length} <span> - products</span>
-            <img src={cart} alt="Cart" />
-          </CartButton>
         </HeaderRow>
         <NavMobile className={isMenuOpen ? 'is-open' : ''}>
           <Links>
@@ -78,6 +74,10 @@ const Header = () => {
             </LinkItem>
           </Links>
         </NavMobile>
+        <CartButton onClick={openCart}>
+          {items.length} <span> - products</span>
+          <img src={cart} alt="Cart" />
+        </CartButton>
       </HeaderBar>
     </>
   )
