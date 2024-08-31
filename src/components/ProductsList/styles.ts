@@ -3,8 +3,10 @@ import styled from 'styled-components'
 import { breakPoints, colors } from '../../styles'
 import { Card } from '../Product/styles'
 
-export const Container = styled.section<Omit<Props, 'title' | 'games'>>`
-  padding: 32px 0;
+export const Container = styled.section<
+  Omit<Props, 'title' | 'games' | 'isLoading'>
+>`
+  padding: 64px 0;
   background-color: ${(props) =>
     props.background === 'black' ? colors.black : colors.gray};
 

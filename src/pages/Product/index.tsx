@@ -5,38 +5,42 @@ import Section from '../../components/Section'
 import Gallery from '../../components/Gallery'
 
 import { useGetGameQuery } from '../../services/api'
+import Loader from '../../components/Loader'
+
+type GameParams = {
+  id: string
+}
 
 const Product = () => {
-  const { id } = useParams()
+  const { id } = useParams() as GameParams
 
-  const { data: gameGames } = useGetGameQuery(id!)
+  const { data: game } = useGetGameQuery(id)
 
-  if (gameGames) {
-    return (
-      <>
-        <Hero game={gameGames} />
-        <Section title="About the game" background="black">
-          <p>{gameGames.description}</p>
-        </Section>
-        <Section title="More details" background="gray">
-          <p>
-            <b>Platform:</b> {gameGames.details.system} <br />
-            <b>Developer:</b> {gameGames.details.developer} <br />
-            <b>Publisher:</b>: {gameGames.details.publisher} <br />
-            <b>Languages: </b> The game supports multiple languages, including:{' '}
-            {gameGames.details.languages.join(' , ')}
-          </p>
-        </Section>
-        <Gallery
-          name={gameGames.name}
-          defaultCover={gameGames.media.cover}
-          items={gameGames.media.gallery}
-        />
-      </>
-    )
+  if (!game) {
+    return <Loader />
   }
-
-  return <h4>Loading...</h4>
+  return (
+    <>
+      <Hero game={game} />
+      <Section title="About the game" background="black">
+        <p>{game.description}</p>
+      </Section>
+      <Section title="More details" background="gray">
+        <p>
+          <b>Platform:</b> {game.details.system} <br />
+          <b>Developer:</b> {game.details.developer} <br />
+          <b>Publisher:</b>: {game.details.publisher} <br />
+          <b>Languages: </b> The game supports multiple languages, including:{' '}
+          {game.details.languages.join(' , ')}
+        </p>
+      </Section>
+      <Gallery
+        name={game.name}
+        defaultCover={game.media.cover}
+        items={game.media.gallery}
+      />
+    </>
+  )
 }
 
 export default Product
