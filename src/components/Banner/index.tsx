@@ -1,7 +1,7 @@
-import { formatPrice } from '../ProductsList'
 import Tag from '../Tag'
 import Button from '../Button'
 import Loader from '../Loader'
+import { parseToAus } from '../../utils'
 
 import { useGetFeaturedGameQuery } from '../../services/api'
 
@@ -22,8 +22,8 @@ const Banner = () => {
           <div>
             <Title>{game.name}</Title>
             <Price>
-              From <span>{formatPrice(game.prices.old)}</span> <br />
-              to only {formatPrice(game.prices.current)}
+              From <span>{parseToAus(game.prices.old)}</span> <br />
+              to only {parseToAus(game.prices.current)}
             </Price>
           </div>
           <Button

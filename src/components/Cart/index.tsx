@@ -3,8 +3,7 @@ import { useNavigate } from 'react-router-dom'
 
 import Button from '../Button'
 import Tag from '../Tag'
-import { formatPrice } from '../ProductsList'
-import { getTotalPrice } from '../../utils'
+import { getTotalPrice, parseToAus } from '../../utils'
 
 import { RootReducer } from '../../store'
 import { close, remove } from '../../store/reducers/cart'
@@ -41,32 +40,41 @@ const Cart = () => {
     <CartContainer className={isOpen ? 'is-open' : ''}>
       <Overlay onClick={closeCart} />
       <SideBar>
-        <ul>
-          {items.map((item) => (
-            <CartItem key={item.id}>
-              <img src={item.media.thumbnail} alt={item.name} />
-              <div>
-                <h3>{item.name}</h3>
-                <Tag>{item.details.category}</Tag>
-                <Tag>{item.details.system}</Tag>
-                <span> {formatPrice(item.prices.current)} </span>
-              </div>
-              <button onClick={() => removeItem(item.id)} type="button" />
-            </CartItem>
-          ))}
-        </ul>
-        <Quantity>{items.length} jogos(s) no carrinho</Quantity>
-        <Prices>
-          Total de {formatPrice(getTotalPrice(items))}
-          {''} <span>Em ate 6x sem juros</span>
-        </Prices>
-        <Button
-          onClick={goToCheckout}
-          title="click for continue with the purchase"
-          type="button"
-        >
-          Continue com a compra
-        </Button>
+        {items.length > 0 ? (
+          <>
+            <ul>
+              {items.map((item) => (
+                <CartItem key={item.id}>
+                  <img src={item.media.thumbnail} alt={item.name} />
+                  <div>
+                    <h3>{item.name}</h3>
+                    <Tag>{item.details.category}</Tag>
+                    <Tag>{item.details.system}</Tag>
+                    <span> {parseToAus(item.prices.current)} </span>
+                  </div>
+                  <button onClick={() => removeItem(item.id)} type="button" />
+                </CartItem>
+              ))}
+            </ul>
+            <Quantity>{items.length} jogos(s) no carrinho</Quantity>
+            <Prices>
+              Total de {parseToAus(getTotalPrice(items))}
+              {''} <span>Em ate 6x sem juros</span>
+            </Prices>
+            <Button
+              onClick={goToCheckout}
+              title="click for continue with the purchase"
+              type="button"
+            >
+              Continue com a compra
+            </Button>
+          </>
+        ) : (
+          <p className="empty-text">
+            O carrinho esta vazio, adicione pelo menos um produto para continuar
+            com a compra
+          </p>
+        )}
       </SideBar>
     </CartContainer>
   )

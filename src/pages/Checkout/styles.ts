@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { colors } from '../../styles'
+import { breakPoints, colors } from '../../styles'
 
 type InputGroupProps = {
   maxWidth?: string
@@ -18,6 +18,10 @@ export const Row = styled.div<RowProps>`
   column-gap: 24px;
 
   margin-top: ${(props) => props.marginTop || '0'};
+
+  @media (min-width: ${breakPoints.tablet}) and (max-width: ${breakPoints.desktop}) {
+    display: block;
+  }
 `
 
 export const InputGroup = styled.div<InputGroupProps>`
@@ -42,6 +46,10 @@ export const InputGroup = styled.div<InputGroupProps>`
     &.error {
       border: 1px solid red;
     }
+  }
+
+  @media (min-width: ${breakPoints.tablet}) and (max-width: ${breakPoints.desktop}) {
+    margin-top: 16px;
   }
 `
 

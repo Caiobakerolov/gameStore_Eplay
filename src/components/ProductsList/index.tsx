@@ -1,5 +1,6 @@
 import Product from '../Product'
 import Loader from '../Loader'
+import { parseToAus } from '../../utils'
 
 import { Container, List } from './styles'
 
@@ -9,13 +10,6 @@ export type Props = {
   games?: Game[]
   id?: string
   isLoading: boolean
-}
-
-export const formatPrice = (price = 0) => {
-  return new Intl.NumberFormat('en', {
-    style: 'currency',
-    currency: 'USD'
-  }).format(price)
 }
 
 const ProductList = ({ background, title, games, id, isLoading }: Props) => {
@@ -31,7 +25,7 @@ const ProductList = ({ background, title, games, id, isLoading }: Props) => {
     }
 
     if (game.prices.current) {
-      tags.push(formatPrice(game.prices.current))
+      tags.push(parseToAus(game.prices.current))
     }
 
     return tags

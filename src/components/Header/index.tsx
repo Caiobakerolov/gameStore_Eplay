@@ -41,7 +41,9 @@ const Header = () => {
             </Burgers>
             <LogoWrapper>
               <Link to="/">
-                <img src={logo} alt="Eplay" />
+                <h1>
+                  <img src={logo} alt="Eplay" />
+                </h1>
               </Link>
             </LogoWrapper>
           </div>
@@ -74,7 +76,7 @@ const Header = () => {
             </LinkItem>
           </Links>
         </NavMobile>
-        <CartButton onClick={openCart}>
+        <CartButton role="button" onClick={openCart}>
           {items.length} <span> - products</span>
           <img src={cart} alt="Cart" />
         </CartButton>
